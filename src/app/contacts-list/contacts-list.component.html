@@ -1,0 +1,24 @@
+<main class="page">
+  <header class="page-header">
+    <h1>Contatos</h1>
+    <button type="button" (click)="logout()">Sair</button>
+  </header>
+
+  @if (loading()) {
+    <p>Carregando…</p>
+  } @else if (contacts().length === 0) {
+    <p>Nenhum contato ainda.</p>
+  } @else {
+    <ul class="contact-list">
+      @for (contact of contacts(); track contact.id) {
+        <li>
+          <a [routerLink]="['/contatos', contact.id]">
+            <strong>{{ contact.profileName || contact.waId }}</strong>
+            <span class="wa-id">{{ contact.waId }}</span>
+            <span class="last-seen">{{ contact.lastSeenAt | date: 'dd/MM/yyyy HH:mm' }}</span>
+          </a>
+        </li>
+      }
+    </ul>
+  }
+</main>

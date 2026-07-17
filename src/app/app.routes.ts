@@ -1,0 +1,20 @@
+import { Routes } from '@angular/router';
+import { authGuard } from './core/auth.guard';
+
+export const routes: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: 'contatos' },
+  {
+    path: 'login',
+    loadComponent: () => import('./login/login.component').then(m => m.LoginComponent)
+  },
+  {
+    path: 'contatos',
+    canActivate: [authGuard],
+    loadComponent: () => import('./contacts-list/contacts-list.component').then(m => m.ContactsListComponent)
+  },
+  {
+    path: 'contatos/:id',
+    canActivate: [authGuard],
+    loadComponent: () => import('./conversation/conversation.component').then(m => m.ConversationComponent)
+  }
+];

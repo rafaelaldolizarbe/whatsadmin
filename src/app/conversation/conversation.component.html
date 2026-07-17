@@ -1,0 +1,25 @@
+<main class="page">
+  <a routerLink="/contatos" class="back">← Contatos</a>
+
+  @if (loading()) {
+    <p>Carregando…</p>
+  } @else if (messages().length === 0) {
+    <p>Nenhuma mensagem nesta conversa.</p>
+  } @else {
+    <ul class="thread">
+      @for (message of messages(); track message.id) {
+        <li [class.outbound]="message.direction === 1" [class.inbound]="message.direction === 0">
+          <div class="bubble">
+            <p class="body">{{ message.body || '(sem texto — tipo ' + message.type + ')' }}</p>
+            <div class="meta">
+              <span>{{ message.timestamp | date: 'dd/MM/yyyy HH:mm' }}</span>
+              @if (message.status) {
+                <span class="status">{{ message.status }}</span>
+              }
+            </div>
+          </div>
+        </li>
+      }
+    </ul>
+  }
+</main>

@@ -1,0 +1,52 @@
+.page {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 2rem 1.25rem;
+  font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+h1 {
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+button {
+  border: 1px solid #ccc;
+  background: #fff;
+  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+}
+
+.contact-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.contact-list a {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid #ddd8c9;
+  border-radius: 8px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.wa-id,
+.last-seen {
+  font-size: 0.82rem;
+  color: #6b6f66;
+}
