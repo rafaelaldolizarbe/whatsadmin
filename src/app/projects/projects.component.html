@@ -1,0 +1,50 @@
+<main class="page">
+  <header class="page-header">
+    <h1>Projetos do menu</h1>
+    <a routerLink="/contatos">← Contatos</a>
+  </header>
+
+  @if (loading()) {
+    <p>Carregando…</p>
+  } @else {
+    <ul class="project-list">
+      @for (project of projects(); track project.id) {
+        <li>
+          <div>
+            <strong>{{ project.title }}</strong>
+            <p class="short">{{ project.shortDescription }}</p>
+          </div>
+          <div class="actions">
+            <button type="button" (click)="edit(project)">Editar</button>
+            <button type="button" class="danger" (click)="remove(project.id)">Excluir</button>
+          </div>
+        </li>
+      } @empty {
+        <li class="empty">Nenhum projeto cadastrado.</li>
+      }
+    </ul>
+
+    <form class="project-form" (ngSubmit)="submit()">
+      <h2>{{ editingId === null ? 'Novo projeto' : 'Editar projeto' }}</h2>
+
+      <label for="title">Título</label>
+      <input id="title" name="title" [(ngModel)]="form.title" required maxlength="24" />
+
+      <label for="shortDescription">Descrição curta (máx. 72 caracteres — limite da Meta)</label>
+      <textarea id="shortDescription" name="shortDescription" [(ngModel)]="form.shortDescription" required maxlength="72" rows="2"></textarea>
+
+      <label for="detailsText">Texto detalhado (enviado quando o item é selecionado)</label>
+      <textarea id="detailsText" name="detailsText" [(ngModel)]="form.detailsText" required rows="4"></textarea>
+
+      <label for="displayOrder">Ordem de exibição</label>
+      <input id="displayOrder" name="displayOrder" type="number" [(ngModel)]="form.displayOrder" required />
+
+      <div class="form-actions">
+        @if (editingId !== null) {
+          <button type="button" (click)="cancelEdit()">Cancelar</button>
+        }
+        <button type="submit">{{ editingId === null ? 'Criar' : 'Salvar' }}</button>
+      </div>
+    </form>
+  }
+</main>

@@ -3,23 +3,52 @@
 
   @if (loading()) {
     <p>Carregando…</p>
-  } @else if (messages().length === 0) {
-    <p>Nenhuma mensagem nesta conversa.</p>
   } @else {
-    <ul class="thread">
-      @for (message of messages(); track message.id) {
-        <li [class.outbound]="message.direction === 1" [class.inbound]="message.direction === 0">
-          <div class="bubble">
-            <p class="body">{{ message.body || '(sem texto — tipo ' + message.type + ')' }}</p>
-            <div class="meta">
-              <span>{{ message.timestamp | date: 'dd/MM/yyyy HH:mm' }}</span>
-              @if (message.status) {
-                <span class="status">{{ message.status }}</span>
-              }
+    @if (contact(); as c) {
+      <header class="contact-header">
+        <div>
+          <strong>{{ c.profileName || c.waId }}</strong>
+          <span class="wa-id">{{ c.waId }}</span>
+        </div>
+        <button type="button" class="takeover-btn" [class.active]="c.humanTakeoverEnabled" (click)="toggleTakeover()">
+          {{ c.humanTakeoverEnabled ? 'Devolver pro bot' : 'Assumir conversa' }}
+        </button>
+      </header>
+    }
+
+    @if (messages().length === 0) {
+      <p>Nenhuma mensagem nesta conversa.</p>
+    } @else {
+      <ul class="thread">
+        @for (message of messages(); track message.id) {
+          <li [class.outbound]="message.direction === 1" [class.inbound]="message.direction === 0">
+            <div class="bubble">
+              <p class="body">{{ message.body || '(sem texto — tipo ' + message.type + ')' }}</p>
+              <div class="meta">
+                <span>{{ message.timestamp | date: 'dd/MM/yyyy HH:mm' }}</span>
+                @if (message.status) {
+                  <span class="status">{{ message.status }}</span>
+                }
+              </div>
             </div>
-          </div>
-        </li>
-      }
-    </ul>
+          </li>
+        }
+      </ul>
+    }
+
+    <div #bottomSentinel></div>
+
+    <form class="composer" (ngSubmit)="send()">
+      <textarea
+        name="draftText"
+        [(ngModel)]="draftText"
+        placeholder="Escreva uma mensagem…"
+        rows="2"
+        [disabled]="sending()"
+      ></textarea>
+      <button type="submit" [disabled]="sending() || !draftText.trim()">
+        {{ sending() ? 'Enviando…' : 'Enviar' }}
+      </button>
+    </form>
   }
 </main>

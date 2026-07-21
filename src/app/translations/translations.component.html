@@ -1,0 +1,56 @@
+<main class="page">
+  <header class="page-header">
+    <h1>Traduções do site</h1>
+    <a routerLink="/contatos">← Contatos</a>
+  </header>
+
+  @if (loading()) {
+    <p>Carregando…</p>
+  } @else {
+    <ul class="resource-list">
+      @for (resource of resources(); track resource.id) {
+        <li>
+          <div>
+            <strong>{{ resource.locale }} / {{ resource.namespace }}</strong>
+            <p class="updated">Atualizado em {{ resource.updatedAt | date: 'dd/MM/yyyy HH:mm' }}</p>
+          </div>
+          <div class="actions">
+            <button type="button" (click)="edit(resource)">Editar</button>
+            <button type="button" class="danger" (click)="remove(resource.id)">Excluir</button>
+          </div>
+        </li>
+      } @empty {
+        <li class="empty">Nenhuma tradução cadastrada.</li>
+      }
+    </ul>
+
+    <form class="resource-form" (ngSubmit)="submit()">
+      <h2>{{ editingId === null ? 'Novo registro' : 'Editar registro' }}</h2>
+
+      <div class="row">
+        <div>
+          <label for="locale">Locale</label>
+          <input id="locale" name="locale" [(ngModel)]="form.locale" required maxlength="5" placeholder="pt" />
+        </div>
+        <div>
+          <label for="namespace">Namespace</label>
+          <input id="namespace" name="namespace" [(ngModel)]="form.namespace" required maxlength="100" placeholder="hero" />
+        </div>
+      </div>
+
+      <label for="contentJson">Conteúdo (JSON)</label>
+      <textarea id="contentJson" name="contentJson" [(ngModel)]="form.contentJson" required rows="10" class="json-editor"></textarea>
+
+      @if (error()) {
+        <p class="error">{{ error() }}</p>
+      }
+
+      <div class="form-actions">
+        @if (editingId !== null) {
+          <button type="button" (click)="cancelEdit()">Cancelar</button>
+        }
+        <button type="submit">{{ editingId === null ? 'Criar' : 'Salvar' }}</button>
+      </div>
+    </form>
+  }
+</main>

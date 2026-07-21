@@ -16,5 +16,20 @@ export const routes: Routes = [
     path: 'contatos/:id',
     canActivate: [authGuard],
     loadComponent: () => import('./conversation/conversation.component').then(m => m.ConversationComponent)
+  },
+  {
+    path: 'projetos',
+    canActivate: [authGuard],
+    loadComponent: () => import('./projects/projects.component').then(m => m.ProjectsComponent)
+  },
+  {
+    path: 'configuracoes',
+    canActivate: [authGuard],
+    loadComponent: () => import('./settings/settings.component').then(m => m.SettingsComponent)
+  },
+  {
+    path: 'traducoes',
+    canActivate: [authGuard],
+    loadComponent: () => import('./translations/translations.component').then(m => m.TranslationsComponent)
   }
 ];

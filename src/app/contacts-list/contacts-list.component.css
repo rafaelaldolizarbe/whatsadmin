@@ -50,3 +50,36 @@ button {
   font-size: 0.82rem;
   color: #6b6f66;
 }
+
+.page-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.page-nav a {
+  color: #6b6f66;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.takeover-badge,
+.attention-badge {
+  margin-left: 0.5rem;
+  font-size: 0.68rem;
+  font-weight: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+}
+
+.takeover-badge {
+  color: #a23b2e;
+  background: #f3ddd8;
+}
+
+.attention-badge {
+  color: #a3721f;
+  background: #f1e3c6;
+}

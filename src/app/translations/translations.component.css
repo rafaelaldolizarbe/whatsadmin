@@ -1,0 +1,148 @@
+.page {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 2rem 1.25rem;
+  font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+h1 {
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+.page-header a {
+  color: #6b6f66;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.resource-list {
+  list-style: none;
+  margin: 0 0 2rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.resource-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid #ddd8c9;
+  border-radius: 8px;
+}
+
+.resource-list li.empty {
+  justify-content: center;
+  color: #6b6f66;
+}
+
+.updated {
+  margin: 0.2rem 0 0;
+  font-size: 0.78rem;
+  color: #6b6f66;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  flex: none;
+}
+
+.actions button {
+  border: 1px solid #ccc;
+  background: #fff;
+  border-radius: 6px;
+  padding: 0.35rem 0.7rem;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+
+.actions button.danger {
+  border-color: #a23b2e;
+  color: #a23b2e;
+}
+
+.resource-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 1.2rem;
+  border: 1px solid #ddd8c9;
+  border-radius: 10px;
+}
+
+.resource-form h2 {
+  font-size: 1.05rem;
+  margin: 0 0 0.6rem;
+}
+
+.resource-form label {
+  font-size: 0.85rem;
+  margin-top: 0.6rem;
+}
+
+.resource-form input,
+.resource-form textarea {
+  padding: 0.5rem 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.row {
+  display: flex;
+  gap: 1rem;
+}
+
+.row > div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.json-editor {
+  font-family: ui-monospace, "SF Mono", Consolas, monospace;
+  font-size: 0.85rem;
+  resize: vertical;
+}
+
+.error {
+  color: #a23b2e;
+  font-size: 0.85rem;
+  margin: 0.6rem 0 0;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  margin-top: 1.2rem;
+}
+
+.form-actions button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.form-actions button[type="submit"] {
+  background: #9c6b2e;
+  color: #fff;
+}
+
+.form-actions button[type="button"] {
+  background: #fff;
+  border: 1px solid #ccc;
+}

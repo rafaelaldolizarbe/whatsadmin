@@ -1,0 +1,28 @@
+<main class="page">
+  <header class="page-header">
+    <h1>Textos do bot</h1>
+    <a routerLink="/contatos">← Contatos</a>
+  </header>
+
+  @if (loading()) {
+    <p>Carregando…</p>
+  } @else {
+    <form (ngSubmit)="submit()">
+      <label for="greetingText">Saudação do menu principal</label>
+      <textarea id="greetingText" name="greetingText" [(ngModel)]="form.greetingText" required rows="3"></textarea>
+
+      <label for="aboutMeText">Texto de "Sobre mim"</label>
+      <textarea id="aboutMeText" name="aboutMeText" [(ngModel)]="form.aboutMeText" required rows="4"></textarea>
+
+      <label for="contactConfirmationText">Confirmação de "Falar com o Rafael"</label>
+      <textarea id="contactConfirmationText" name="contactConfirmationText" [(ngModel)]="form.contactConfirmationText" required rows="3"></textarea>
+
+      <div class="form-actions">
+        @if (saved()) {
+          <span class="saved-hint">Salvo.</span>
+        }
+        <button type="submit">Salvar</button>
+      </div>
+    </form>
+  }
+</main>

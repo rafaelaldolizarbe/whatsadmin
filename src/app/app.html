@@ -1,1 +1,15 @@
 <router-outlet />
+
+@if (toasts().length > 0) {
+  <div class="toast-stack">
+    @for (toast of toasts(); track toast.toastId) {
+      <div class="toast">
+        <div class="toast-body" (click)="openConversation(toast)">
+          <strong>{{ toast.profileName || toast.waId }}</strong>
+          <span>quer falar com você</span>
+        </div>
+        <button type="button" class="toast-close" (click)="dismiss(toast.toastId)" aria-label="Dispensar">✕</button>
+      </div>
+    }
+  </div>
+}
